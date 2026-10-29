@@ -554,3 +554,102 @@ canvas#confettiCanvas {
 .ml-1 {
     margin-left: 0.5rem;
 }
+
+/* =========================================================
+   RESPONSIVE DESIGN (Tablets & Mobile Phones)
+   ========================================================= */
+
+/* Prevent pinch-to-zoom interference on touch devices */
+html,
+body {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* TABLETS & SMALL LAPTOPS (<= 768px) */
+@media (max-width: 768px) {
+    header {
+        padding: 0.75rem 1rem;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        justify-content: space-between;
+    }
+
+    .nav-tabs {
+        order: 3;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        overflow-x: auto;
+    }
+
+    .nav-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    .level-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 1rem;
+    }
+
+    .level-card {
+        padding: 1rem;
+    }
+
+    .equation-box {
+        font-size: 2.8rem;
+        margin: 1rem 0;
+    }
+}
+
+/* SMARTPHONES (<= 480px) */
+@media (max-width: 480px) {
+    .brand h1 {
+        font-size: 1.4rem;
+    }
+
+    .stat-badge {
+        font-size: 0.95rem;
+        padding: 0.25rem 0.6rem;
+    }
+
+    .quiz-container {
+        padding: 1.25rem;
+    }
+
+    .equation-box {
+        font-size: 2.2rem;
+    }
+
+    .answers-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+
+    .answer-btn {
+        padding: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .memory-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+    }
+
+    .memory-card {
+        height: 85px;
+        font-size: 1.2rem;
+    }
+
+    /* Keep canvas neatly framed inside small screens */
+    #balloonCanvas {
+        width: 100% !important;
+        height: auto !important;
+    }
+}

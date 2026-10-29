@@ -136,7 +136,7 @@ const app = {
     },
 
     loadProgress() {
-        const saved = localStorage.getItem('galaxy_math_progress');
+        const saved = localStorage.getItem('starlight_galaxy_math_progress');
         if (saved) {
             try {
                 this.userProgress = JSON.parse(saved);
@@ -146,7 +146,7 @@ const app = {
     },
 
     saveProgress() {
-        localStorage.setItem('galaxy_math_progress', JSON.stringify(this.userProgress));
+        localStorage.setItem('starlight_galaxy_math_progress', JSON.stringify(this.userProgress));
         this.updateStarUI();
     },
 
@@ -424,7 +424,7 @@ const balloonGame = {
         this.newQuestion();
         this.loop();
 
-        this.canvas.onclick = (e) => this.handleClick(e);
+        this.canvas.onpointerdown = (e) => this.handleClick(e);
     },
 
     stop() {
