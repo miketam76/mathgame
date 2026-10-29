@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Starlight Math: Times Table Adventure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <canvas id="confettiCanvas"></canvas>
+
+    <header>
+        <div class="brand" onclick="app.showScreen('map')">
+            <span>🚀</span>
+            <h1>Starlight Math</h1>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="nav-btn active" onclick="app.showScreen('map')">Adventure</button>
+            <button class="nav-btn" onclick="app.showScreen('balloon')">Balloon Pop</button>
+            <button class="nav-btn" onclick="app.showScreen('memory')">Memory Match</button>
+            <button class="nav-btn" onclick="app.showScreen('explorer')">Grid</button>
+        </nav>
+
+        <div class="stats-bar">
+            <div class="stat-badge">⭐ <span id="starCounter">0</span></div>
+            <button class="audio-btn" id="soundToggle" onclick="audio.toggle()">🔊</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- LEVEL MAP SCREEN -->
+        <section id="mapScreen" class="screen active">
+            <div class="map-header">
+                <h2>Your Times Table Quest</h2>
+                <p class="muted">Pass Level Tests with 8+ correct answers to unlock the next table!</p>
+            </div>
+            <div class="level-grid" id="levelGrid"></div>
+
+            <div class="parent-tools">
+                <p class="muted small-text">Parent Tools</p>
+                <button class="btn btn-secondary sm-btn" onclick="app.resetAllProgress()">Reset All Progress</button>
+                <button class="btn btn-secondary sm-btn ml-1" onclick="app.unlockAll()">Unlock All Levels</button>
+            </div>
+        </section>
+
+        <!-- QUIZ / PRACTICE SCREEN -->
+        <section id="quizScreen" class="screen">
+            <div class="quiz-container">
+                <div class="quiz-topbar">
+                    <button class="btn btn-secondary" onclick="app.showScreen('map')">← Back to Map</button>
+                    <span id="quizModeBadge" class="quiz-badge">Test Mode</span>
+                </div>
+
+                <div class="quiz-progress" id="quizProgressWrap">
+                    <div class="quiz-progress-bar" id="quizProgressBar"></div>
+                </div>
+
+                <div class="equation-box">
+                    <span id="qFactorA">3</span>
+                    <span>×</span>
+                    <span id="qFactorB">4</span>
+                    <span>=</span>
+                    <span class="highlight-pink">?</span>
+                </div>
+
+                <div id="dotArrayWrap" class="hidden">
+                    <div class="dot-array" id="dotArray"></div>
+                </div>
+
+                <div class="answers-grid" id="answersGrid"></div>
+
+                <button class="btn btn-secondary mt-1" id="hintToggleBtn" onclick="app.toggleHint()">
+                    💡 Show Visual Dot Array
+                </button>
+            </div>
+        </section>
+
+        <!-- BALLOON POP SCREEN -->
+        <section id="balloonScreen" class="screen">
+            <div class="game-topbar">
+                <h2>Balloon Pop Arcade</h2>
+                <div class="stat-badge">Score: <span id="balloonScore">0</span></div>
+            </div>
+            <canvas id="balloonCanvas" width="700" height="480"></canvas>
+            <div class="center-content mt-1">
+                <button class="btn btn-primary" id="balloonStartBtn" onclick="balloonGame.start()">Start Game</button>
+            </div>
+        </section>
+
+        <!-- MEMORY SCREEN -->
+        <section id="memoryScreen" class="screen">
+            <div class="center-content mb-1">
+                <h2>Multiplication Memory Match</h2>
+                <p class="muted">Pair equations with their answers!</p>
+            </div>
+            <div class="memory-grid" id="memoryGrid"></div>
+            <div class="center-content">
+                <button class="btn btn-primary" onclick="memoryGame.init()">New Game</button>
+            </div>
+        </section>
+
+        <!-- TABLE EXPLORER SCREEN -->
+        <section id="explorerScreen" class="screen">
+            <div class="center-content mb-1">
+                <h2>Interactive Times Table Grid</h2>
+                <p class="muted">Hover or click on any number to explore factors!</p>
+            </div>
+            <div class="table-container">
+                <table class="mult-table" id="matrixTable"></table>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL DIALOG -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-content">
+            <h2 id="modalTitle">Level Complete!</h2>
+            <div id="modalStars" class="modal-stars">⭐⭐⭐</div>
+            <p id="modalMsg" class="muted mb-1">Great job! You answered 9/10 correctly!</p>
+            <button class="btn btn-primary full-width" onclick="app.closeModal()">Continue Adventure</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
